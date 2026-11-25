@@ -1,37 +1,46 @@
-/*********************************************************************
- * @file  Apllication.h
- * @author <mettre l'adresse mail ou nom prenom>
- * @brief Fichier header de l'application
- *********************************************************************/
 #ifndef APPLICATION_H_
 #define APPLICATION_H_
 
-/**
-  * @class Application
-  * @brief Classe Application 
-*/    
-class Application
-{
-  public :
-    /**
-     * @fn Application();
-     * @brief Constructeur par defaut
-    */    
+#include <Arduino.h>
+#include <vector>
+#include <stdexcept>
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+
+// Capteurs
+#include "CapteurTouch.h"
+#include "CapteurUltrason.h"
+#include "CapteurPotentiometre.h"
+#include "CapteurBouton.h"
+
+// Actionneurs
+#include "Led.h"
+#include "Buzzer.h"
+#include "Servomoteur.h"
+
+class Application {
+private:
+    CapteurBouton bouton;
+    CapteurPotentiometre potentiometre;
+    CapteurTouch touch;
+    CapteurUltrason ultrason;
+
+    Led led;
+    Buzzer buzzer;
+    Servomoteur servo;
+
+    bool sessionEnCours;
+    unsigned long debutSession;
+    unsigned long dureeSession;
+    
+    std::vector<int> historiqueSessions;
+
+public:
     Application();
-    /**
-     * @fn Application();
-     * @brief Destructeur
-    */    
-    ~Application();    
-    /**
-     * @fn void init(void)
-     * @brief Fonction d'initialisation de l'application
-    */
-    void init(void);
-    /**
-     * @fn void run(void)
-     * @brief Fonction de lancement de l'application
-    */
-    void run(void);
+    ~Application();
+
+    void init();
+    void run();
 };
+
 #endif
