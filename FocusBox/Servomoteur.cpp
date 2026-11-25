@@ -8,19 +8,10 @@ void Servomoteur::init() {
     servo.attach(broche);
     deverrouiller();
 }
-
 void Servomoteur::activer() {
-    verrouiller();
+    servo.write(90);  // verrouille
 }
 
 void Servomoteur::desactiver() {
-    deverrouiller();
-}
-
-void Servomoteur::verrouiller() {
-    servo.write(90);
-}
-
-void Servomoteur::deverrouiller() {
-    servo.write(0);
+    servo.write(0);   // déverrouille
 }

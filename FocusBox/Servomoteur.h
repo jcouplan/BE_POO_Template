@@ -11,12 +11,9 @@ private:
 public:
     Servomoteur(int broche);
 
-    void init() override;
-    void activer() override;
-    void desactiver() override;
-
-    void verrouiller();
-    void deverrouiller();
+    void init() ;
+    void activer() ;
+    void desactiver() ;
 };
 
 #endif
